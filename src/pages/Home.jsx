@@ -3,15 +3,16 @@ import "./Home.css";
 import axios from "../plugins/axios";
 import TableRow from "../components/home/TableRow";
 
+
 function Home() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
     axios
-      .get("users")
+      .get("/users")
       .then((res) => {
-        console.log(res.data.data, "response");
-        setUser(res?.data?.data);
+        console.log(res.data, "response");
+        setUser(res?.data);
       })
       .catch((err) => {
         console.log(err);
@@ -20,13 +21,15 @@ function Home() {
 
   return (
     <div className="container">
+
       <table className="styled-table">
         <thead>
           <tr>
             <th>#ID</th>
-            <th>Avatar</th>
-            <th>FullName</th>
+            <th>Full Name</th>
             <th>Email</th>
+            <th>Position</th>
+            <th>Age</th>
           </tr>
         </thead>
         <tbody>

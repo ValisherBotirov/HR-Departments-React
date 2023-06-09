@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Valisher",
+      "last_name": "Botirov",
+      "position": "CEO",
+      "age" : 21,
+      "email" : "Valisherbotirov1218@gmail.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Jamshidbek",
+      "last_name": "Akhlidinov",
+      "position": "CTO",
+      "age" : 20,
+      "email" : "Jkbot@gmail.com"
+    }
+  ]
+}

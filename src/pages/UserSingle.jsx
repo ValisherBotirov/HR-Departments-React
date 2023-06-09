@@ -16,7 +16,7 @@ function UserSingle() {
     axios
       .get(`users/${id}`)
       .then((res) => {
-        setData(res.data.data);
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -59,13 +59,15 @@ function UserSingle() {
     <div className="container">
       <div className="user-box">
         <div className="avatar">
-          <img src={data?.avatar} alt="user ingo" />
+          <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" alt="user ingo" />
         </div>
         <div className="user-info">
           <h2>Foydalanuvchi malumotlari</h2>
           <p className="user-info-text">Ismi : {data?.first_name} </p>
           <p className="user-info-text">Familiyasi : {data?.last_name} </p>
           <p className="user-info-text">Email : {data?.email}</p>
+          <p className="user-info-text">Position : {data?.position}</p>
+          <p className="user-info-text">Age : {data?.age}</p>
           <div className="action-box">
             <div className="btn btn-primary" onClick={editUser}>Tahrirlash</div>
             <div className="btn btn-danger" onClick={deleteUser}>O'chirish</div>
