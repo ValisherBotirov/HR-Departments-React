@@ -11,7 +11,6 @@ function Home() {
     axios
       .get("/users")
       .then((res) => {
-        console.log(res.data, "response");
         setUser(res?.data);
       })
       .catch((err) => {

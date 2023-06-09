@@ -5,16 +5,32 @@
       "first_name": "Valisher",
       "last_name": "Botirov",
       "position": "CEO",
-      "age" : 21,
-      "email" : "Valisherbotirov1218@gmail.com"
+      "age": 21,
+      "email": "Valisherbotirov1218@gmail.com"
     },
     {
       "id": 2,
       "first_name": "Jamshidbek",
       "last_name": "Akhlidinov",
       "position": "CTO",
-      "age" : 20,
-      "email" : "Jkbot@gmail.com"
+      "age": 20,
+      "email": "Jkbot@gmail.com"
+    },
+    {
+      "age": "20",
+      "email": "diyorshoh@gmail.com",
+      "position": "Bugalter",
+      "first_name": "Diyor ",
+      "last_name": "Amirdinov",
+      "id": 3
+    },
+    {
+      "age": "19",
+      "email": "sdhks@gmail.com",
+      "position": "Shogirt",
+      "first_name": "Temur",
+      "last_name": "Kapatsi",
+      "id": 4
     }
   ]
 }

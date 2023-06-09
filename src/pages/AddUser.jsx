@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import "./UserCreate.css"
 import FormInput from "../components/input/FormInput";
+import toast,{Toaster} from "react-hot-toast";
+import axios from "../plugins/axios";
+
+// import toast from "bootstrap/js/src/toast";
 
 function AddUser() {
     const [firstName,setFirstName] = useState("")
@@ -9,6 +13,28 @@ function AddUser() {
     const [position,setPosition] = useState("")
     const [age,setAge] = useState("")
 
+function submit(){
+
+    const form = {
+        age,email,position,
+        first_name:firstName,
+        last_name:lastName
+    }
+
+    axios.post("/users",form).then((res)=>{
+        console.log(res)
+        toast.success("Muvaffaqiyatli qo'shildi!")
+    }).catch((err)=>{
+        console.log(err)
+        toast.error("Xatolik yuz berdi!")
+    }).finally(()=>{
+        setPosition("")
+        setFirstName("")
+        setLastName("")
+        setEmail("")
+        setAge("")
+    })
+}
 
   return (
     <div className="container">
@@ -22,7 +48,8 @@ function AddUser() {
               <FormInput label="Age" placeholder="21" type="number" modelValue={age} changeInput={(e)=> setAge(e)} />
 
               <div className="d-flex justify-content-end mt-4">
-                  <div className="btn btn-primary px-5">Saqlash</div>
+                  <div className="btn btn-primary px-5" onClick={submit}>Saqlash</div>
+                  <Toaster   position="top-right"/>
               </div>
           </form>
       </div>

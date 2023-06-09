@@ -1,54 +1,53 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import "./ActionModal.css"
+import FormInput from "../input/FormInput";
 
 function ActionModal (props){
-    const [openModal,setOpenModal] = useState(props.isOpen)
     // const [form,setForm] = useState({fistName: '',lastName : "" , email : ""})
-    const [firstName,setFirstName] = useState("")
-    const [lastName,setLastName] = useState("")
-    const [email,setEmail] = useState("")
+    const {first_name,last_name} = props.data
+    const [firstName,setFirstName] = useState(first_name)
+    const [lastName,setLastName] = useState(last_name)
+    const [email,setEmail] = useState(props.data.email)
+    const [position,setPosition] = useState(props.data.position)
+    const [age,setAge] = useState(props.data.age)
     function closeModal(){
-        setOpenModal(false)
-        props.closeModal(openModal)
+        props.closeModal(false)
+
+        setPosition("")
+        setFirstName("")
+        setLastName("")
+        setEmail("")
+        setAge("")
     }
 
-    function handleInput(e){
-        // console.log(e)
-        const { name, value } = e.target;
-
-        if(name === "firstName"){
-            setFirstName(value)
-        }
-        else if(name === "lastName"){
-            setLastName(value)
-        }
-        else if(name === "email"){
-             setEmail(value)
-        }
-
-    }
 
     function submit(){
        const form = {
-           firstName ,
-           lastName,
-           email
+           age,email,position,
+           first_name:firstName,
+           last_name:lastName
        }
 
-       props.getForm(form)
-
-        setEmail("")
+       props.editUser(form)
+        props.closeModal(false)
+        setPosition("")
         setFirstName("")
         setLastName("")
+        setEmail("")
+        setAge("")
+
+
     }
     return(
-        <div className={props.isOpen ? 'modal-class modal' : 'modal'} >
+        <div className="modal-class modal"  >
             <div className="modal-items">
                 <p className="modal-title">User Edit</p>
                 <form action="" className="modal-content  mt-2 border-0">
-                    <input type="text" className="form-control" placeholder="First Name" name='firstName' value={firstName} onChange={handleInput}/>
-                    <input type="text" className="form-control mt-3" placeholder="Last Name" name='lastName' value={lastName} onChange={handleInput}/>
-                    <input type="email" className="form-control mt-3" placeholder="Email" name='email' value={email} onChange={handleInput}/>
+                    <FormInput label="First Name" placeholder="Valisher" type="text" modelValue={firstName} changeInput={(e)=> setFirstName(e)} />
+                    <FormInput label="Last Name" placeholder="Botirov" type="text" modelValue={lastName} changeInput={(e)=> setLastName(e)} />
+                    <FormInput label="Email address" placeholder="name@example.com" type="email" modelValue={email} changeInput={(e)=> setEmail(e)} />
+                    <FormInput label="Position" placeholder="CEO" type="text" modelValue={position} changeInput={(e)=> setPosition(e)} />
+                    <FormInput label="Age" placeholder="21" type="number" modelValue={age} changeInput={(e)=> setAge(e)} />
                 </form>
                 <div className="modal-action">
                     <div className="btn btn-primary" onClick={submit}>Saqlash</div>
