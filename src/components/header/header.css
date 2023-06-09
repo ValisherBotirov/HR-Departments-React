@@ -1,0 +1,16 @@
+.header {
+  padding: 20px;
+  background-color: aquamarine;
+}
+
+.header-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex !important;
+  align-items: center;
+  gap: 30px;
+}
