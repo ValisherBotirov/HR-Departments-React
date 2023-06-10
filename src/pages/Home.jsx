@@ -7,8 +7,21 @@ import Pagination from "../components/Pagination/Pagination";
 
 function Home() {
   const [user, setUser] = useState([]);
+  const [allUser,setAllUser] = useState(null)
   const [currentPage,setCurrentPage] = useState(1)
-  const limit = 2
+  const limit = 10
+
+  useEffect(()=>{
+    axios
+        .get("/users",)
+        .then((res) => {
+
+          setAllUser(res?.data.length);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  },[])
 
   useEffect(() => {
     axios
@@ -51,7 +64,7 @@ function Home() {
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
-        <Pagination users={user} showUser={limit} getCurrenPage={getCurrenPage}/>
+        <Pagination users={allUser} showUser={limit} getCurrenPage={getCurrenPage}/>
       </div>
     </div>
   );

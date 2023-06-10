@@ -4,9 +4,10 @@ import "./Pagination.css"
 function Pagination(props){
 
     const [active,setActive] = useState(1)
-
+    const length = props.users
     const show = props.showUser
-    const endPoint = Math.trunc(props.users.length / show)
+    const endPoint = Math.ceil(length / show)
+    console.log(endPoint,"end")
 
 
     useEffect(()=>{
@@ -18,7 +19,7 @@ function Pagination(props){
     }
 
     function handleNext(){
-        if(active <= endPoint)
+        if(active < endPoint)
         setActive(active + 1)
     }
 
@@ -29,7 +30,7 @@ function Pagination(props){
 
     function renderItems(){
         let arr = []
-        for (let i = 0  ; i < show ; i++){
+        for (let i = 0  ; i < endPoint ; i ++){
             let item = <li className="page-item" key={i} onClick={()=>handleActive(i+1)}><a className={active === i+1 ? ' page-link active' : 'page-link'} href="#" >{i + 1}</a></li>
            arr.push(item)
         }
