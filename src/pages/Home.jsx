@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import axios from "../plugins/axios";
 import TableRow from "../components/home/TableRow";
+import Pagination from "../components/Pagination/Pagination";
 
 
 function Home() {
@@ -37,6 +38,9 @@ function Home() {
           })}
         </tbody>
       </table>
+      <div className="d-flex justify-content-end">
+        <Pagination count={user} />
+      </div>
     </div>
   );
 }
