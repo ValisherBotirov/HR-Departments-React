@@ -7,7 +7,6 @@ function Pagination(props){
     const length = props.users
     const show = props.showUser
     const endPoint = Math.ceil(length / show)
-    console.log(endPoint,"end")
 
 
     useEffect(()=>{

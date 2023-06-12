@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./Home.css";
 import axios from "../plugins/axios";
 import TableRow from "../components/home/TableRow";
 import Pagination from "../components/Pagination/Pagination";
+import {Context} from "../store";
 
 
 function Home() {
@@ -11,16 +12,21 @@ function Home() {
   const [currentPage,setCurrentPage] = useState(1)
   const limit = 10
 
+    const {state,dispatch} = useContext(Context)
+
+
   useEffect(()=>{
     axios
         .get("/users",)
         .then((res) => {
-
           setAllUser(res?.data.length);
+
         })
         .catch((err) => {
           console.log(err);
         });
+
+
   },[])
 
   useEffect(() => {
@@ -33,15 +39,22 @@ function Home() {
       })
       .then((res) => {
         setUser(res?.data);
+          dispatch({type :"GET_USERS",payload:res?.data})
+        setTimeout(()=>{
+            mounted()
+        },3000)
       })
       .catch((err) => {
         console.log(err);
       });
   }, [currentPage]);
 
+  function  mounted(){
+      console.log(state,"all store")
+  }
+
   function getCurrenPage(page){
     setCurrentPage(page)
-    console.log(page,"page")
   }
 
   return (
@@ -58,7 +71,7 @@ function Home() {
           </tr>
         </thead>
         <tbody>
-          {user?.map((user, index) => {
+          {state.users?.map((user, index) => {
             return <TableRow user={user} index={index} key={index} />;
           })}
         </tbody>
