@@ -3,11 +3,13 @@ import "./UserCreate.css"
 import FormInput from "../components/input/FormInput";
 import toast,{Toaster} from "react-hot-toast";
 import axios from "../plugins/axios";
+import useInputHandle from "../hooks/useInputHandle";
 
-// import toast from "bootstrap/js/src/toast";
+
 
 function AddUser() {
-    const [firstName,setFirstName] = useState("")
+    //     use with personal hooks
+    const firstName = useInputHandle("")
     const [lastName,setLastName] = useState("")
     const [email,setEmail] = useState("")
     const [position,setPosition] = useState("")
@@ -17,7 +19,7 @@ function submit(){
 
     const form = {
         age,email,position,
-        first_name:firstName,
+        first_name:firstName.value,
         last_name:lastName
     }
 
@@ -29,7 +31,8 @@ function submit(){
         toast.error("Xatolik yuz berdi!")
     }).finally(()=>{
         setPosition("")
-        setFirstName("")
+        // setFirstName("")
+        firstName.value = ""
         setLastName("")
         setEmail("")
         setAge("")
@@ -41,7 +44,7 @@ function submit(){
       <div className="mx-auto user-create ">
           <h2>User create</h2>
           <form action="" className="mt-2 form-control py-4 px-3">
-              <FormInput label="First Name" placeholder="Valisher" type="text" modelValue={firstName} changeInput={(e)=> setFirstName(e)} />
+              <FormInput label="First Name" placeholder="Valisher" type="text" modelValue={firstName.value} changeInput={(e)=>firstName.onChange(e)} />
               <FormInput label="Last Name" placeholder="Botirov" type="text" modelValue={lastName} changeInput={(e)=> setLastName(e)} />
               <FormInput label="Email address" placeholder="name@example.com" type="email" modelValue={email} changeInput={(e)=> setEmail(e)} />
               <FormInput label="Position" placeholder="CEO" type="text" modelValue={position} changeInput={(e)=> setPosition(e)} />
